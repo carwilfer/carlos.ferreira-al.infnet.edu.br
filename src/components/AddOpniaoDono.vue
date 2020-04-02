@@ -1,49 +1,73 @@
 <template>
   <div>
     <h3>Adicionar Opniao do Dono</h3>
+    
     <div>
-      <form @submit.prevent="onSubmit" v-if="cardsCarros">
-        <div><h2>Opnião:</h2></div>
-        <input type="text" id="name" name="name" v-model="opniao_add.name" />
-        <br />
-        <label for="username">Username:</label>
-        <br />
-        <input type="text" id="username" name="username" v-model="opniao_add.username" />
-        <br />
-        
-        <div><input type="text" v-model="opniao_add.title" placeholder="Add title"></div>
-        <div><h2>Description:</h2></div>
-        <div><input type="text" v-model="opniao_add.description" placeholder="Add title"></div>
-        <div><input type="submit" value="Submit"></div>
-      </form>
+      <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+        <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+          <b-form-input 
+            id="input-2" v-model.trim.lazy="dono_add.name" required placeholder=" Digite o nome ">
+          </b-form-input>
+        </b-form-group>
+
+        <b-form-group 
+          id="input-group-1" label="Endereço de email : " label-for="input-1" description=" Nunca compartilharemos seu email com mais ninguém. ">
+            <b-form-input 
+              id="input-1" v-model.trim.lazy="dono_add.email" type="email" required  placeholder="Digite o email">
+            </b-form-input>
+        </b-form-group>
+
+        <div>
+          <b-form-group label="Inline switch style checkboxes">
+            <b-form-checkbox-group
+              v-model.trim.lazy="selected" :opcoes="opcoes" switches>
+            </b-form-checkbox-group>
+          </b-form-group>
+        </div>
+
+        <div>
+          <b-form-textarea
+            id="textarea" v-model.trim.lazy="declaracaoDono" placeholder="Enter something..." rows="3" max-rows="6">
+          </b-form-textarea>
+          <pre class="mt-3 mb-0">{{ declaracaoDono }}</pre>
+        </div>
+
+        <b-button type="submit" variant="primary">Submit</b-button>
+        <b-button type="reset" variant="danger">Reset</b-button>
+      </b-form>
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
-export default {
-  name: "AddOpniaoDono",
-  data() {
-    return {
-      opniao_add :{
-        imagem: "",
-        veículo: "",
-        Nome_Dono: "",
-        Dono_ha: "",
-        Prós : "",
-        Contra: "",
-        completed: false,
+  export default {
+    name: "AddOpniaoDono",
+    data() {
+      return {
+        dono_add: 
+        {
+          name: '',
+          email: '',
+          selected: [],
+
+        },
+        declaracaoDono: '',
       }
-    };
-  },
-  methods: {
-    ...mapActions(["addTodo"]),
-    onSubmit() {
-      this.addTodo(this.todo_add);
+    },
+    methods: {
+    ...mapActions(["addDono"]),
+        onSubmit(evt) {
+        evt.preventDefault()
+        alert(JSON.stringify(this.dono_add))
+      },
+      onReset(evt) {
+        evt.preventDefault()
+        this.dono.name = ''
+        this.dono.email = ''
+      },
     }
   }
-};
 </script>
 
 <style scoped>

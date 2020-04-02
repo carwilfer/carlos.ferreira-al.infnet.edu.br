@@ -1,12 +1,14 @@
 <template>
     <div>
-        <form @submit.prevent="onSubmit">
-            <div><input type="text" v-model="dono_add.username" placeholder="Add title"></div>
-            <div><input type="text" v-model="dono_add.email" placeholder="Add title"></div> 
-            <div><input type="text" v-model="dono_add.street" placeholder="Add title"></div>   
+
+      <form @submit.prevent="onSubmit">
+
+        <div><input type="text" v-model.trim.lazy="dono_add.username" placeholder="Add title"></div>
+        <div><input type="text" v-model.trim.lazy="dono_add.email" placeholder="Add title"></div> 
+        <div><input type="text" v-model.trim.lazy="dono_add.street" placeholder="Add title"></div>   
     
-            <div><input type="submit" value="Submit"></div>
-        </form>
+        <div><input type="submit" value="Submit"></div>
+      </form>
     </div>
 </template>
 

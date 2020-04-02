@@ -4,7 +4,10 @@
 
 
     <h1> Detalhes do Carro</h1>
-
+        <router-link
+           tag="a" :to="{ name: 'home' }">
+        Voltar pra lista de carros
+      </router-link>
 
     <div>
       <h3>{{ id }}</h3>

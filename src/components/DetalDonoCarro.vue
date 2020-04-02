@@ -1,11 +1,18 @@
 <template>
     <div>
-        <h1> Detalhar usuário</h1>
+        <h1> Detalhe dono do carro</h1>
         <div> 
-          <h3>{{ donoById(id).name }}</h3>
+            <h3>
+                {{ donoById(id).name }}
+            </h3>
+            <router-link
+                tag="button" :to="{ name: 'users' }">
+                Voltar pra Donos
+            </router-link>
         </div>
         <div> <span>Username:</span> {{ donoById(id).username }}</div>
         <div><span>Email:</span> {{ donoById(id).email }}</div>
+        <div><span>Phone: </span>{{ donoById(id).phone }}</div>
     </div>
 </template>
 

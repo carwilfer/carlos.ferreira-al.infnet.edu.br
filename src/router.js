@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import './Filters';
 
 import CardsCarros from './components/CardsCarros';
 import OpniaoDono from './components/OpniaoDono';
@@ -7,7 +8,7 @@ import AddOpniaoDono from './components/AddOpniaoDono';
 import DetalDonoCarro from './components/DetalDonoCarro';
 import DetalCardsCarros from './components/DetalCardsCarros';
 import DonoCarro from './components/DonoCarro';
-import EditDonoCarro from './components/EditarDonoCarro';
+import EditDonoCarro from './components/EditDonoCarro';
 import EditOpniaoDono from './components/EditDonoCarro';
 import Home from './components/Home';
 

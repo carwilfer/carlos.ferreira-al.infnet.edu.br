@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div>
-      <AddOpniaoDono/>
-    </div>
     <form @submit.prevent="onSubmit">
       <div><h2>Title:</h2></div>
       <div><input type="text" v-model="opniao_add.title" placeholder="Add title"></div>
@@ -10,7 +7,6 @@
         <input type="checkbox" v-model="opniao_add.completed" value="false">
         <label for="opniao_add.completed">Está completa?</label>
       </div>
-
       <div><input type="submit" value="Submit"></div>
     </form>
   </div>
@@ -18,7 +14,6 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import AddOpniaoDono from './AddOpniaoDono.vue'
 export default {
   name: "EditOpniaoDono",
   data() {
@@ -31,7 +26,7 @@ export default {
     }
   },computed: mapGetters(["opniaoById"]),
   created() {
-    this.opniao_add = this.todoById(this.id)
+    this.opniao_add = this.opniaoById(this.id)
   },
   methods: {
     ...mapActions(["updateTodo"]),

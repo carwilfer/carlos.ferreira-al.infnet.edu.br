@@ -1,47 +1,54 @@
 <template>
- <div>
-    <h3>Listagem de Usuários</h3>
-  <!-- <router-link to="/form">
-      <button >Adicionar Usuário</button>
-  </router-link> -->
-  <div> <AddOpniaoDono/> </div>
-    <div class="photos">
-        <div v-for="dono in addDono" :key="dono.id" class="dono">
-            <div><h3>{{ dono.name }}</h3></div>
-            <div><span>Username:</span> {{ dono.username }}</div>
-            <div><span>Email:</span> {{ dono.email }}</div>
-            <div><span>Phone: </span>{{ dono.phone }}</div>
+  <div>
+    <h3>Listagem de Donos</h3>
+
+    <div>
+      <AddOpniaoDono/>
+    </div>
+
+    <div class="carros">
+      <div      
+        v-for="dono in allDono" :key="dono.id" class="dono">
+        <div> 
+          <router-link
+            tag="h3" :to="{ name: 'donosDetail', params: { id: dono.id } }">
+            {{ dono.name }}
+           </router-link>
         </div>
-        <router-link
-           tag="h5"
-           :to="{ name: 'detailDonoCarro', params: { id: dono.id } }"
-        >
-        {{ dono.name }}
-        </router-link>
-        <div><p> {{ dono.email }}</p></div>
-        <i @click="deleteDono(dono.id)" class="fas fa-trash-alt"></i>
+        <div> 
+          <span>Username:</span> {{ dono.username }}
+        </div>
+        <div>
+          <span>Email:</span> {{ dono.email }}
+        </div>
+        <div>
+          <span>Phone: </span>{{ dono.phone }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import AddOpniaoDono from "./AddOpniaoDono.vue"
+import AddOpniaoDono from "./AddOpniaoDono"
 export default {
-  name: "DonoCarro",methods: {
-    ...mapActions(["fetchDonos", "deleteDono"]),
+  name: "Donos",
+  methods: {
+    ...mapActions(["getDonos"]),
   },
-  components:{AddOpniaoDono},
-  computed: mapGetters(["allDonos"]),
+  components:
+  {AddOpniaoDono},
+  computed: 
+  mapGetters(["allDonos"]),
   created() {
-    this.fetchDonos();
+    this.getDonos();
   }
- 
 };
 </script>
 
 <style>
-.photos{
+.carros{
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem;

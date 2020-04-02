@@ -1,63 +1,57 @@
 <template>
     <div class="principal">
         <Header />
+        <Home />
         <h2>Avalie nossos Carros</h2>
-
-        <div>
-            <b-form-select v-model="selected" :carros="carros" value-field="marca" text-field="name"></b-form-select>
-            <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
-        </div>
 
         <b-container fluid class="bv-example-row" >
             <b-row cols="3" offset-md="3">
                 <div
                     class="card md-4" v-bind:key="carro.id" v-for="carro in carros" style="max-width: 440px;">
                     <div class="row no-gutters">
-                    <div class="col-md-6">
-                        <img v-bind:src="carro.imagem" class="card-img" alt="carros de luxo"/>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <h5 class="card-title">{{carro.name}}</h5>
-                            <router-link tag="h5"
-                                class="card-title"
-                                :to="{ name: 'carro', params: { id: carro.id } }"
-                                >{{ carro.marca }}
-                            </router-link>
-                            <div>{{carro.marca}} {{carro.ano_modelo}}</div>
-                            <div> {{ carro.valor | formatarPreco("R$")}} </div>
-                            <!-- <a :href="carro.url"--> <a class="btn btn-warning">Detalhar</a> 
-                            <div>
-                                <p> {{ carro.marca }}</p></div>
-                                <i @click="deleteCarro(carro.id)" class="fas fa-trash-alt"></i>
-                            </div>
+                        <div class="col-md-6">
+                            <img v-bind:src="carro.imagem" class="card-img" alt="carros de luxo"/>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body">
+                                <h5 class="card-title">{{carro.name}}</h5>
+                                <router-link tag="h5"
+                                    class="card-title"
+                                    :to="{ name: 'carro', params: { id: carro.id } }"
+                                    >{{ carro.marca }}
+                                </router-link>
+                                <div>{{carro.marca}} {{carro.ano_modelo}}</div>
+                                <div> {{ carro.valor | formatarPreco("R$")}} </div>
+                                <!-- <a :href="carro.url"--> <a class="btn btn-warning">Detalhar</a> 
+
+                                <div>
+                                    <p> {{ carro.marca }}</p>
+                                    <i @click="deleteCarro(carro.id)" class="fas fa-trash-alt"></i>
+                                </div>
+                            </div>    
                         </div>
                     </div>
                 </div>
             </b-row>
         </b-container>
-
     </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import Header from "./Header.vue";
+import Header from './Header';
+import Home from './Home';
+
 export default {
     name:"CardsCarros",
-    compomnets: {Header},
-    data(){
-        return{
-            selected: "",
-        }
-    },
+    components:{Header, Home},
     methods: {
-     ...mapActions(["fetchCardsCarros"]),
+     ...mapActions(["fetchCarros"]),
     },
-    computed: mapGetters(["allCardsCarros"]),
+    computed: mapGetters(["allCarros"]),
         created() {
         this.fetchCarros();
-        }
+    },
 };
 </script>
 
@@ -74,6 +68,14 @@ h2 {
 }
 .card{
     margin: 14px;
+}
+
+span.avaliacao-active {
+
+  background-repeat: no-repeat;
+  background-position-y: 3px;
+  background-position-x: 1px;
+  background-size: 20px;
 }
 
 </style>

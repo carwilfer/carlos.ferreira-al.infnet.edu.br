@@ -1,5 +1,4 @@
 <template>
-
   <div>
     <div>
       <AddOpniaoDono/>
@@ -7,18 +6,20 @@
     <h3>Opniões de Donos</h3>
     <div class="opniaoDono">
       <div
-       
-        v-for="opniaoDono in allOpniaoDono"
-        :key="opniaoDono.id"
-        :id="opniaoDono.id"
-        class="opniaoDono"
-        :class="{'is-complete':opniaoDono.completed}"
-      >
-        {{ opniaoDono.title }}
-      
-        <div><p> {{ opniaoDono.description }}</p></div>
-        <i @click="deleteopniaoDono(opniaoDono.id)" class="fas fa-trash-alt"></i>
-       
+        v-for="opniaoDono in allOpniaoDono" :key="opniaoDono.id" :id="opniaoDono.id" 
+        class="opniaoDono" :class="{'is-complete':opniaoDono.completed}">
+
+        <router-link
+          tag="h5"
+          :to="{ name: 'detalCardsCarros', params: { id: opniaoDono.id } }">
+          {{ opniaoDono.title }}
+        </router-link>  
+
+        <div>
+          <p> {{ opniaoDono.description }}</p>
+        </div>
+
+        <i @click="deleteOpniao(opniaoDono.id)" class="fas fa-trash-alt"></i>
       </div>
     </div>
   </div>

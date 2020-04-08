@@ -8,6 +8,7 @@ import AddOpniaoDono from './components/AddOpniaoDono';
 import DetalDonoCarro from './components/DetalDonoCarro';
 import DetalCardsCarros from './components/DetalCardsCarros';
 import DonoCarro from './components/DonoCarro';
+import Login from'./components/Login';
 import EditOpniaoDono from './components/EditDonoCarro';
 import EditDonoCarro from './components/EditDonoCarro';
 import AddDonoCarro from './components/AddDonoCarro';
@@ -63,6 +64,10 @@ export default new VueRouter({
             component: EditOpniaoDono,
 
         }]
+    },{
+        path: '/logar',
+        name: 'login',
+        component: Login,
     }
     ]
 });

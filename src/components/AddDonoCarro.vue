@@ -1,37 +1,40 @@
 <template>
     <div>
-        <h1>Adicionar Dono de carro</h1>
-
+        <Header/>
+        <div >
         <button type="button" v-on:click="mostrarFormulario">
-            Adcionar donos
+            Adicionar donos
         </button>
 
         <form @submit.prevent="onSubmit" v-if="mostrarDonos">
             <label for="name">Name:</label>
             <br />
-            <input type="text" id="name" name="name" v-model="user_add.name" />
+            <input type="text" id="name" name="name" v-model="user_add.name"  placeholder="Add Nome"/>
             <br />
             <label for="username">Username:</label>
             <br />
-            <input type="text" id="username" name="username" v-model="user_add.username" />
+            <input type="text" id="username" name="username" v-model="user_add.username"  placeholder="Sobrenome"/>
             <br />
             <label for="email">Email:</label>
             <br />
-            <input type="email" id="email" name="email" v-model="user_add.email" />
+            <input type="email" id="email" name="email" v-model="user_add.email"  placeholder="carneirinhos@gmail.com"/>
             <br />
             <label for="phone">Phone:</label>
             <br />
-            <input type="text" id="phone" name="phone" v-model="user_add.phone" />
+            <input type="text" id="phone" name="phone" v-model="user_add.phone"  placeholder="21 999999999"/>
             <br />
             <br />
-            <button type="submit">Submit</button>
+            <button type="submit" value="Submit">Enviar</button>
         </form>
+        </div>
     </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import Header from './Header'
 export default {
+    components:{Header},
     name: "AddDonoCarro",
     data() {
         return {
@@ -62,8 +65,9 @@ export default {
 
 <style scoped>
 
-label, button, input {
-    margin-left: 100px;
+label, input {
+    display: flex;
+    margin-left: 60px;
 }
 
 .divisionForm {
@@ -73,10 +77,11 @@ form {
   display: block;
 }
 input[type="text"],input[type="email"],input[type="textarea"] {
-  width: 100%;
+  width: 97%;
+  display: flex;
   flex: 10;
   padding: 10px;
-  border: 1px solid #1BBC9B;
+  border: 1px solid rgb(54, 59, 58);
   outline: 0;
 }
 input[type="submit"] {

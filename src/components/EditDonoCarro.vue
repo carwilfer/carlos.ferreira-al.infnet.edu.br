@@ -7,9 +7,10 @@
         <div><input type="text" v-model.trim.lazy="dono_add.street" placeholder="Add street"></div>   
 
         <div><input type="submit" value="Submit"></div>
+        
         <router-link
           tag="button" :to="{ name: 'donoCarros' }">
-            Voltar para os carros
+            Voltar para lista de donos
         </router-link>
 
       </form>

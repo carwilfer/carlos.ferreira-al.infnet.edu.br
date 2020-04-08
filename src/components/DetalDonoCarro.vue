@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="detail">
         <h1> Detalhe dono do carro</h1>
         <div> 
             <h3>

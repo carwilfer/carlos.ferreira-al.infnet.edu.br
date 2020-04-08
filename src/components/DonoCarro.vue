@@ -1,34 +1,37 @@
 <template>
   <div>
-    <h3>Listagem de Donos</h3>
+    
 
-  <div>
-    <AddDonoCarro/>
-  </div>
-    <div class="carros">
-      <div      
-        v-for="d in allDono" 
-        :key="d.id" 
-        class="dono">
-        <div> 
-          <router-link
-            tag="h3" :to="{ name: 'detalDonoCarros', params: { id: d.id } }">
-            {{ d.name }}
-           </router-link>
-        </div>
-        <div> 
-          <span>Username:</span> {{ d.username }}
-        </div>
-        <div>
-          <span>Email:</span> {{ d.email }}
-        </div>
-        <div>
-          <span>Phone: </span>{{ d.phone }}
-        </div>
-        <div><p> {{ d.name }}</p></div>
-        <i @click="deleteDonos(d.id)" class="btn btn-warning"></i>
-      </div>
+    <div>
+      <AddDonoCarro/>
     </div>
+    <h3>Listagem de Donos</h3>
+      <div class="carros">
+        <div      
+          v-for="d in allDono" 
+          :key="d.id" 
+          :id="d.id"
+          class="dono"
+          :class="{'is-complete':d.completed}">
+          <div> 
+            <router-link
+              tag="h3" :to="{ name: 'detalDonoCarros', params: { id: d.id } }">
+              {{ d.name }}
+            </router-link>
+          </div>
+          <div> 
+            <span>Username:</span> {{ d.username }}
+          </div>
+          <div>
+            <span>Email:</span> {{ d.email }}
+          </div>
+          <div>
+            <span>Phone: </span>{{ d.phone }}
+          </div>
+          <div><p> {{ d.name }}</p></div>
+          <i @click="deleteDonos(d.id)" class="fas fa-trash-alt"> excluir</i>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -52,6 +55,7 @@ export default {
 
 <style>
 .carros{
+  margin-top: 5px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem;

@@ -2,28 +2,31 @@
   <div>
     <h3>Listagem de Donos</h3>
 
-    <div>
-      <AddOpniaoDono/>
-    </div>
-
+  <div>
+    <AddDonoCarro/>
+  </div>
     <div class="carros">
       <div      
-        v-for="dono in allDono" :key="dono.id" class="dono">
+        v-for="d in allDono" 
+        :key="d.id" 
+        class="dono">
         <div> 
           <router-link
-            tag="h3" :to="{ name: 'donosDetail', params: { id: dono.id } }">
-            {{ dono.name }}
+            tag="h3" :to="{ name: 'detalDonoCarros', params: { id: d.id } }">
+            {{ d.name }}
            </router-link>
         </div>
         <div> 
-          <span>Username:</span> {{ dono.username }}
+          <span>Username:</span> {{ d.username }}
         </div>
         <div>
-          <span>Email:</span> {{ dono.email }}
+          <span>Email:</span> {{ d.email }}
         </div>
         <div>
-          <span>Phone: </span>{{ dono.phone }}
+          <span>Phone: </span>{{ d.phone }}
         </div>
+        <div><p> {{ d.name }}</p></div>
+        <i @click="deleteDonos(d.id)" class="btn btn-warning"></i>
       </div>
     </div>
   </div>
@@ -31,16 +34,16 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import AddOpniaoDono from "./AddOpniaoDono"
+import AddDonoCarro from "./AddDonoCarro"
+
 export default {
-  name: "Donos",
+  components:{AddDonoCarro},
+  name: "dono",
   methods: {
-    ...mapActions(["getDonos"]),
+    ...mapActions(["getDonos", "deleteDonos"]),
   },
-  components:
-  {AddOpniaoDono},
   computed: 
-  mapGetters(["allDonos"]),
+  mapGetters(["allDono"]),
   created() {
     this.getDonos();
   }
@@ -53,9 +56,9 @@ export default {
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem;
 }
-.user {
+.dono {
   border: 1px solid #ccc;
-  background: #41b883;
+  background: #d4d8dd;
   padding: 1rem;
   border-radius: 5px;
   justify-content: left;
@@ -78,7 +81,7 @@ i {
   display: inline-block;
   width: 10px;
   height: 10px;
-  background: #35495e;
+  background: #ffffff;
 }
 .incomplete-box {
   display: inline-block;

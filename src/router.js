@@ -8,8 +8,9 @@ import AddOpniaoDono from './components/AddOpniaoDono';
 import DetalDonoCarro from './components/DetalDonoCarro';
 import DetalCardsCarros from './components/DetalCardsCarros';
 import DonoCarro from './components/DonoCarro';
-import EditDonoCarro from './components/EditDonoCarro';
 import EditOpniaoDono from './components/EditDonoCarro';
+import EditDonoCarro from './components/EditDonoCarro';
+import AddDonoCarro from './components/AddDonoCarro';
 import Home from './components/Home';
 
 Vue.use(VueRouter);
@@ -27,7 +28,11 @@ export default new VueRouter({
     },{
         path: '/detalhe/:id',
         name: 'detalCardsCarros',
-        component: DetalCardsCarros,
+        component: DetalCardsCarros
+    },{
+        path: 'addOpniaoDono',
+        name: 'addOpniaoDono',
+        component: AddOpniaoDono
     },{
         path: '/donoCarros',
         name: 'donoCarros',
@@ -35,22 +40,29 @@ export default new VueRouter({
     },{
         path: '/detalhe/:id',
         name: 'detalDonoCarros',
-        component: DetalDonoCarro, 
-        children: [{
-            path: 'EditDonoCarro',
-            name: 'editDono',
-            component: EditDonoCarro}]
+        component: DetalDonoCarro
+    },{
+        path:'editar',
+        name: 'editarDono',
+        component: EditDonoCarro
+    },{
+        path: '/formulario',
+        name: 'addDonoCarro',
+        component: AddDonoCarro
     },{
         path: '/opniaoDono',
         name: 'opniaoDono',
-        component: OpniaoDono
+        component: OpniaoDono,
     },{
         path: '/detalhe/:id',
         name: 'editOpniaoDono',
-        component: EditOpniaoDono, 
+        component: EditOpniaoDono,
         children: [{
-            path: 'addOpniaoDono',
-            name: 'addOpniaoDono',
-            component: AddOpniaoDono}]
-    },]
-})
+            path: 'edit',
+            name: 'editarOpniao',
+            component: EditOpniaoDono,
+
+        }]
+    }
+    ]
+});

@@ -2,9 +2,12 @@
   <div>
     <form @submit.prevent="onSubmit">
       <div><h2>Title:</h2></div>
-      <div><input type="text" v-model="opniao_add.title" placeholder="Add title"></div>
+      <div><input type="text" v-model="opniao_add.name" placeholder="Add name"></div>
+      <div><input type="text" v-model="opniao_add.username" placeholder="Add username"></div>
+      <div><input type="email" v-model="opniao_add.email" placeholder="Add email"></div>
+      <div><input type="number" v-model="opniao_add.phone" placeholder="Add phone"></div>
       <div>
-        <input type="checkbox" v-model="opniao_add.completed" value="false">
+        <input type="checkbox" v-model="opniao_add.email" value="false">
         <label for="opniao_add.completed">Está completa?</label>
       </div>
       <div><input type="submit" value="Submit"></div>
@@ -20,8 +23,10 @@ export default {
     return {
       id:this.$route.params.id,
       opniao_add :{
-        title: "",
-        description: ""
+        name: "",
+        username: "",
+        email: "",
+        phone: "",
       }
     }
   },computed: mapGetters(["opniaoById"]),

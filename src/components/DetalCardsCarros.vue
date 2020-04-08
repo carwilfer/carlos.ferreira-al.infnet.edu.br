@@ -2,56 +2,49 @@
     
 <div id="carro-detal">
 
-
     <h1> Detalhes do Carro</h1>
-        <router-link
-           tag="a" :to="{ name: 'home' }">
+
+    <div class="detail">
+      <div>
+
+        <div>Nome carro: {{carrosById(id).name}}</div>
+        <div>Marca e Ano: {{carrosById(id).marca}}, {{carrosById(id).ano_modelo}}</div>
+        <div>Valor: {{carrosById(id).valor}}</div>
+      </div>
+      <router-link
+        tag="button" 
+        :to="{ name: 'home' }">
         Voltar pra lista de carros
       </router-link>
 
-    <div>
-      <h3>{{ id }}</h3>
-      <h3>{{carro.name}}</h3>
-      <h3>{{carro.marca}} {{carro.ano_modelo}}</h3>
-      <h3>{{carro.valor}}</h3>
     </div>
-
-    <div>
-      <form @submit.prevent="onSubmit">
-        <div><h2>Title:</h2></div>
-        <div><input type="text" v-model="opniao_dono.title" placeholder="Adic opniao"></div>
-        <div><h2>Description:</h2></div>
-        <div><input type="text" v-model="opniao_dono.description" placeholder="Adic opniao"></div>
-        <div><input type="submit" value="Submit"></div>
-      </form>
-    </div>
-    <button @click="editar">Adcionar comentário</button>
-      <router-view></router-view>
+    
+    <router-link
+          tag="button" :to="{ name: 'addOpniaoDono' }">
+            Avaliar
+        </router-link>
+    <router-view></router-view>  
 
   </div>
-
-
 </template>
 
 <script>
 import {mapGetters, mapActions} from "vuex";
+
  
 export default {
-
   name: "DetalCardsCarros",
-    methods: {
-    ...mapActions(["getCardsCarro"]),
-    },
 
+  methods: {
+    ...mapActions(["getCarros"]),
+  },
     data: function(){
-      return{ id : this.$route.params.id  };
-      },
-      computed: {
-        ...mapGetters(["carroById",])
+      return{ 
+        id : this.$route.params.id};
     },
-    created() {
-      this.getCarro();
-    }
+    computed: {
+        ...mapGetters(["carrosById"]),
+     }
   
 }      
 </script>

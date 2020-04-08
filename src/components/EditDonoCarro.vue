@@ -1,13 +1,17 @@
 <template>
     <div>
-
       <form @submit.prevent="onSubmit">
+        <div><input type="text" v-model.trim.lazy="dono_add.name" placeholder="Add name"></div>  
+        <div><input type="text" v-model.trim.lazy="dono_add.username" placeholder="Add username"></div>
+        <div><input type="text" v-model.trim.lazy="dono_add.email" placeholder="Add email"></div> 
+        <div><input type="text" v-model.trim.lazy="dono_add.street" placeholder="Add street"></div>   
 
-        <div><input type="text" v-model.trim.lazy="dono_add.username" placeholder="Add title"></div>
-        <div><input type="text" v-model.trim.lazy="dono_add.email" placeholder="Add title"></div> 
-        <div><input type="text" v-model.trim.lazy="dono_add.street" placeholder="Add title"></div>   
-    
         <div><input type="submit" value="Submit"></div>
+        <router-link
+          tag="button" :to="{ name: 'donoCarros' }">
+            Voltar para os carros
+        </router-link>
+
       </form>
     </div>
 </template>
@@ -20,7 +24,8 @@ export default {
     return {
       id:this.$route.params.id,
       dono_add :{
-        dononame: "",
+        name: "",
+        username: "",
         email: "",
         street: "",
       }
@@ -40,5 +45,6 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+
 
 </style>

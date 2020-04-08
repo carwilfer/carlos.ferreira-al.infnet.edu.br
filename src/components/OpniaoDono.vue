@@ -4,22 +4,30 @@
       <AddOpniaoDono/>
     </div>
     <h3>Opniões de Donos</h3>
-    <div class="opniaoDono">
+    <div class="opniaoDonos">
       <div
-        v-for="opniaoDono in allOpniaoDono" :key="opniaoDono.id" :id="opniaoDono.id" 
-        class="opniaoDono" :class="{'is-complete':opniaoDono.completed}">
+        v-for="o in allOpniao" 
+        :key="o.id" 
+        :id="o.id" 
+        class="opniaoDono" :class="{'is-complete':o.completed}">
 
         <router-link
           tag="h5"
-          :to="{ name: 'detalCardsCarros', params: { id: opniaoDono.id } }">
-          {{ opniaoDono.title }}
+          :to="{ name: 'editOpniaoDono', params: { id: o.id } }">
+          {{ o.name }}
         </router-link>  
 
         <div>
-          <p> {{ opniaoDono.description }}</p>
+          <b-card-text><p> {{ o.src }}</p></b-card-text>
+          <b-card-text><p> Nome Veículo: {{ o.veiculo }}</p></b-card-text>
+          <b-card-text><p> Sono Veículo: {{ o.Nome }}</p></b-card-text>
+          <b-card-text><p> Tempo de uso: {{ o.Dono_ha }}</p></b-card-text>
+          <b-card-text><p> Prós: {{ o.Prós }}</p></b-card-text>
+          <b-card-text><p> Contra: {{ o.Contra }}</p></b-card-text>
         </div>
 
-        <i @click="deleteOpniao(opniaoDono.id)" class="fas fa-trash-alt"></i>
+
+        <i @click="deleteOpnioes(opnioes.id)" class="fas fa-trash-alt"></i>
       </div>
     </div>
   </div>
@@ -27,30 +35,30 @@
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import AddOpniaoDono from './AddOpniaoDono.vue'
+import AddOpniaoDono from "./AddOpniaoDono"
 export default {
-  name: "opniaoDono",
   components:{AddOpniaoDono},
+  name: "OpniaoDono",
   methods: {
-    ...mapActions(["fetchOpniaoDono", "deleteOpniaoDono"]),
+    ...mapActions(["getOpnioes", "deleteOpnioes"]),
 
   },
-  computed: mapGetters(["allOpniaoDono"]),
+  computed: mapGetters(["allOpniao"]),
   created() {
-    this.fetchOpniaoDono();
+    this.getOpnioes();
   }
 };
 </script>
 
 <style scoped>
-.todos {
+.opniaoDonos {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 1rem;
 }
-.todo {
+.opniaoDono {
+  background: #d4d8dd;
   border: 1px solid #ccc;
-  background: #41b883;
   padding: 1rem;
   border-radius: 5px;
   text-align: center;
